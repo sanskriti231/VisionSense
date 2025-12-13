@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+.neucha-regular {
+  font-family: "Neucha", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+.bbh-hegarty-bold {
+  font-family: "BBH Hegarty", sans-serif;
+  font-weight: 700;
+  font-style:normal;
+}
