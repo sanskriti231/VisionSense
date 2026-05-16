@@ -1,3 +1,4 @@
+console.log("SCRIPT LOADED");
 document.addEventListener('DOMContentLoaded', () => {
     const marquee = document.querySelector('.marquee');
     if (marquee) {
@@ -115,27 +116,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         clearError();
-        if (result) result.textContent = "Uploading & analyzing...";
-
         const formData = new FormData();
         formData.append("image", selectedFile);
 
         try {
-            const res = await fetch("http://localhost:5000/upload", {
+            const res = await fetch("http://localhost:5000/api/upload", {
                 method: "POST",
-                body: formData
+                body: formData,
             });
 
-            const data = await res.json();
-            if (result) result.textContent = data.description || "No description returned";
-            clearError();
+            if (!res.ok) {
+                throw new Error(`Upload failed with status ${res.status}`);
+            }
 
+            const data = await res.json();
+            if (result) {
+                result.textContent = JSON.stringify(data, null, 2);
+            }
         } catch (err) {
             console.error(err);
             if (result) result.textContent = "Upload failed. Is backend running?";
-            // showError("Upload failed. Is backend running?");
+        } finally {
+            imageInput.value = "";
+            selectedFile = null;
         }
-        imageInput.value = "";
-        selectedFile = null;
     });
 });
