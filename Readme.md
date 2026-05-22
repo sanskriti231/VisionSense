@@ -36,13 +36,22 @@ The project combines a Python-based machine learning pipeline with a backend API
 ```bash
 VisionSense/
 │
-├── uploads/            # Uploaded images
-├── model/              # Trained model files
-├── static/             # Static assets
-├── templates/          # HTML templates
-├── app.py              # Main application
-├── requirements.txt
-└── ...
+├── Backend/
+│   ├── middleware/
+│   ├── routes/
+│   ├── uploads/
+│   ├── server.js
+│   └── package.json
+│
+├── Frontend/
+│   ├── src/
+│   └── package.json
+│
+├── ML-Service/
+│   ├── app.py
+│   └── requirements.txt
+│
+└── README.md
 ```
 
 ## How It Works
